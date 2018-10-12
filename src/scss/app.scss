@@ -1,0 +1,37 @@
+/*!
+ * Custom Bootstrap, based on Twitter Bootstrap
+ * This styleguide imports all scss files from original bootstrap
+ * and overrides only those that are modified with new custom files
+ */
+
+// Main Scss
+
+//Bootstrap
+
+// And this
+
+@import './bootstrap/bootstrap';// Variables
+
+$primary: #1ef903;
+$dark: #3d3d3b;
+$white: #fff;
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: $primary;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+input {
+  background-color: $dark;
+  color: $white;
+  border: 0;
+  padding: 0.2rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(255,255,255,.1);  
+}
