@@ -3,18 +3,14 @@ import React, { Component } from "react";
 class TableColumn extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       currentDisplay: "sum",
       value1: 0,
-      value2: 0,
-      value3: 0,
-      value4: 0,
-      value5: 0
+      value2: null,
+      value3: null,
+      value4: null,
+      value5: null
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.renderSum = this.renderSum.bind(this);
-    this.toggleResult = this.toggleResult.bind(this);
   }
   toggleResult(){
     function toggleNext(current) {
@@ -31,8 +27,6 @@ class TableColumn extends Component {
           return "sum";
       }
     }
-    // console.log(this.state.currentDisplay);
-    // console.log(toggleNext(this.state.currentDisplay));
     this.setState({currentDisplay: toggleNext(this.state.currentDisplay)})
   }
   handleChange (e) {
@@ -44,9 +38,22 @@ class TableColumn extends Component {
     const { value1, value2, value3, value4, value5 } = this.state;
     return value1+value2+value3+value4+value5;
   }
+  renderAvg(valArray) {
+    const arrAvg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
+    return arrAvg(valArray);
+  }
+  renderMin(valArray) {
+    var minValue = Math.min.apply(null, valArray.filter(Boolean));
+    return minValue;
+  }
+  renderMax(valArray) {
+    var maxValue = Math.max.apply(null, valArray.filter(Boolean));
+    return maxValue;
+  }
   render() {
     console.log(this.state);
-    const {currentDisplay, sumValue, avgValue, minValue, maxValue } = this.state;
+    const {currentDisplay, value1,value2,value3,value4,value5 } = this.state;
+    const valArray = [value1,value2,value3,value4,value5];
     return (
       <div className="d-flex flex-column mx-1">
         <input
@@ -74,16 +81,19 @@ class TableColumn extends Component {
           name="value5"
           onChange={e => this.handleChange(e)}
         />
-        <div className="bg-dark py-2" onClick={() => this.toggleResult()}>
+        <button className="btn-dark py-2 clickable" onClick={() => this.toggleResult()}>
           <small>
             <span className="font-weight-bold text-muted mr-2">
               {currentDisplay}
             </span>
             <span className="text-white">
               {currentDisplay === "sum" && <span>{this.renderSum()}</span>}
+              {currentDisplay === "avg" && <span>{this.renderAvg(valArray)}</span>}
+              {currentDisplay === "max" && <span>{this.renderMax(valArray)}</span>}
+              {currentDisplay === "min" && <span>{this.renderMin(valArray)}</span>}
             </span>
           </small>
-        </div>
+        </button>
       </div>
     );
   }

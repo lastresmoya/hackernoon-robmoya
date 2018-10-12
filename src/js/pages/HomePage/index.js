@@ -1,9 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import image from './assets/avatar.jpg';
 import TableColumn from "./TableColumn";
-
 
 function HomePage(props) {
     return(
@@ -19,16 +16,17 @@ function HomePage(props) {
                 </div>
                 <div className="row">
                     <div className="col text-center">
-                    <small className="text-muted">
-                        Add values into each cell to check for Column Averages, Totals, Min
-                        and Max Values
-                    </small>
-                    <div className="d-flex justify-content-center align-items-start">
-                        <TableColumn />
-                        <TableColumn />
-                        <TableColumn />
-                        <TableColumn />
-                    </div>
+                        <small className="text-muted">
+                            Add values into each cell to check for Column Averages, Totals, Min
+                            and Max Values
+                        </small>
+                        <div className="d-flex justify-content-center align-items-start">
+                            <TableColumn />
+                            <TableColumn />
+                            <TableColumn />
+                            <TableColumn />
+                            <div className="btn btn-dark btn-sm">+</div>
+                        </div>
                     </div>
                 </div>
             </div>
